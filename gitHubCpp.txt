@@ -1,0 +1,7 @@
+git clone https://github.com/Ben811/ICpp1.git
+git add * := výber souborù k pøidání, * muže být reprezentovaná cestou
+git commit -m "messageProPøenos" - 
+git push - synchronizace dat na internet
+
+git fetch - porovná zmìny na internetu
+git pull - fetch than pull 
