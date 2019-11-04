@@ -32,14 +32,14 @@ int* Hra::najdiIdStatickychObjektu(double xmin, double xmax, double ymin, double
 		StatickyObjekt* so = dynamic_cast<StatickyObjekt*>(objekty[i]);
 		if (so != nullptr)
 		{
-			if (so->getX >= xmin && so->getX <= xmax && so->getY >= ymin && so->getY <= xmax)
+			if (so->getX() >= xmin && so->getX() <= xmax && so->getY() >= ymin && so->getY() <= xmax)
 			{
 				int* tempole = new int[velikostTemp + 1];
 				for (int i = 0; i < velikostTemp; i++)
 				{
 					tempole[i] = poleId[i];
 				}
-				tempole[velikostTemp++] = so->getID;
+				tempole[velikostTemp++] = so->getID();
 				delete[] poleId;
 				poleId = tempole;
 			}
@@ -86,7 +86,7 @@ PohyblivyObjekt** Hra::najdiPohybliveObjektyVOblasti(double x, double y, double 
 
 	for (int i = 0; i < velikostPPO; i++)
 	{
-		if (poleToSort[i]->getUhel >= umin && poleToSort[i]->getUhel <= umax)
+		if (poleToSort[i]->getUhel() >= umin && poleToSort[i]->getUhel() <= umax)
 		{
 			PohyblivyObjekt** tempole = new PohyblivyObjekt * [velikostPPOUhel+1];
 			for (int j = 0; j < velikostPPOUhel; j++)

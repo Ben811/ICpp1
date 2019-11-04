@@ -1,7 +1,7 @@
 #ifndef TYP_PREKAZKY_H
 #define TYP_PREKAZKY_H
 
-enum TypPrekazky {
+enum struct TypPrekazky {
 	Skala, MalaRostlina, VelkaRostlina
 
 };
