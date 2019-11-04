@@ -27,7 +27,7 @@ int main()
 	}
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << s[i]->toString();
+		std::cout << s[i]->toString() << std::endl;
 	}
 	return 0;
 }

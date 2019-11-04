@@ -9,6 +9,10 @@ Cas::Cas(int phodiny, int pMinuty, int pSekundy)
 	_sekundy = pSekundy;
 }
 
+Cas::~Cas()
+{
+}
+
 int Cas::compareTo(IComparable* obj) const
 {
 	Cas* cas = static_cast<Cas*>(obj);
