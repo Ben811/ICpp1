@@ -2,6 +2,13 @@
 #include <string>
 using  namespace std;
 
+Cas::Cas(int phodiny, int pMinuty, int pSekundy)
+{
+	_hodiny = phodiny;
+	_minuty = pMinuty;
+	_sekundy = pSekundy;
+}
+
 int Cas::compareTo(IComparable* obj) const
 {
 	Cas* cas = static_cast<Cas*>(obj);
