@@ -8,7 +8,11 @@ Hra::Hra()
 }
 
 Hra::~Hra()
-{	
+{
+	for (int i = 0; i < velikostPole; i++)
+	{
+		delete objekty[i];
+	}
 }
 
 void Hra::vlozObjekt(Objekt* o)
@@ -25,7 +29,7 @@ void Hra::vlozObjekt(Objekt* o)
 
 int* Hra::najdiIdStatickychObjektu(double xmin, double xmax, double ymin, double ymax)
 {
-	int* poleId = new int[0];
+	int* poleId = new int[10];
 	int velikostTemp = 0;
 	for (int i = 0; i < velikostPole; i++)
 	{
@@ -34,7 +38,7 @@ int* Hra::najdiIdStatickychObjektu(double xmin, double xmax, double ymin, double
 		{
 			if (so->getX() >= xmin && so->getX() <= xmax && so->getY() >= ymin && so->getY() <= xmax)
 			{
-				int* tempole = new int[velikostTemp + 1];
+				int* tempole = new int[velikostTemp *2];
 				for (int i = 0; i < velikostTemp; i++)
 				{
 					tempole[i] = poleId[i];
@@ -50,7 +54,7 @@ int* Hra::najdiIdStatickychObjektu(double xmin, double xmax, double ymin, double
 
 PohyblivyObjekt** Hra::najdiPohybliveObjektyVOblasti(double x, double y, double r)
 {
-	PohyblivyObjekt** polePObjektu = new PohyblivyObjekt * [0];
+	PohyblivyObjekt** polePObjektu = new PohyblivyObjekt * [10];
 	int velikostTemp = 0;
 	for (int i = 0; i < velikostTemp; i++)
 	{
@@ -60,7 +64,7 @@ PohyblivyObjekt** Hra::najdiPohybliveObjektyVOblasti(double x, double y, double 
 			double vzdalenost = sqrt(pow(x - po->getX(), 2) + pow(y - po->getY(), 2));
 			if (vzdalenost <= r)
 			{
-				PohyblivyObjekt** tempole = new PohyblivyObjekt * [velikostTemp + 1];
+				PohyblivyObjekt** tempole = new PohyblivyObjekt * [velikostTemp*2];
 				for (int i = 0; i < velikostTemp; i++)
 				{
 					tempole[i] = polePObjektu[i];
@@ -79,16 +83,16 @@ PohyblivyObjekt** Hra::najdiPohybliveObjektyVOblasti(double x, double y, double 
 {
 	
 	PohyblivyObjekt** poleToSort = najdiPohybliveObjektyVOblasti(x, y, r);	
-	PohyblivyObjekt** polePObjektuUhel = new PohyblivyObjekt * [0];
+	PohyblivyObjekt** polePObjektuUhel = new PohyblivyObjekt * [10];
 
-	int velikostPPO = sizeof(poleToSort) / sizeof(poleToSort[0]);
+	int velikostPPO = sizeof(poleToSort) / sizeof(*poleToSort);
 	int velikostPPOUhel = 0;
 
 	for (int i = 0; i < velikostPPO; i++)
 	{
 		if (poleToSort[i]->getUhel() >= umin && poleToSort[i]->getUhel() <= umax)
 		{
-			PohyblivyObjekt** tempole = new PohyblivyObjekt * [velikostPPOUhel+1];
+			PohyblivyObjekt** tempole = new PohyblivyObjekt * [velikostPPOUhel*2];
 			for (int j = 0; j < velikostPPOUhel; j++)
 			{
 				tempole[j] = polePObjektuUhel[j];
