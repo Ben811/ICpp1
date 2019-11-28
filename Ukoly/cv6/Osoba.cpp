@@ -58,7 +58,7 @@ void Osoba::setDatumNarozeni(Datum datumNarozeni)
 
 std::ostream& operator<<(std::ostream& os, const Osoba& obj)
 {
-	os << obj._jmeno << ";" << obj._prijmeni << ";" << obj._trvaleBydliste << ";" << obj._datumNarozeni;
+	os << obj._jmeno << " " << obj._prijmeni << " " << obj._trvaleBydliste << " " << obj._datumNarozeni << std::endl;
 	return os;
 }
 

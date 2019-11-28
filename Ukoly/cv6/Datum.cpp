@@ -42,7 +42,7 @@ void Datum::setRok(int rok)
 }
 
 std::ostream& operator<<(std::ostream& os, const Datum& obj) {
-	os << obj._den << ";" << obj._mesic << ";" << obj._rok;
+	os << obj._den << " " << obj._mesic << " " << obj._rok;
 	return os;
 }
 

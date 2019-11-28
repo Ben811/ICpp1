@@ -45,7 +45,7 @@ void Adresa::setPSC(int psc)
 }
 
 std::ostream& operator<<(std::ostream& os, const Adresa& obj) {
-	os << obj._ulice << ";" << obj._mesto << ";" << obj.psc;
+	os << obj._ulice << " " << obj._mesto << " " << obj.psc;
 	return os;
 }
 
