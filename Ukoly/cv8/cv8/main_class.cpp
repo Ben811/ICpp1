@@ -4,8 +4,10 @@
 int main()
 {
 	Matice<int> m{ 3,3 };
+	m.Vypis();
 	int jednodpole[] = { 0,1,2,3,4,5,6,7,8 };
 	m.nastavZ(jednodpole);
+	
 	Matice<int> mt = m.Transpozice();
 	Matice<int> mmt = m.Soucin(mt);
 	Matice<double> mmt_d = mmt.Pretypuj<double>();
@@ -18,5 +20,6 @@ int main()
 	int tpole[] = { 85,225,236,292,819,866,499,1413,1496 };
 	t.nastavZ(tpole);
 	std::cout << "r==t ? " << (r.JeShodna(t) ? "true" : "false") << std::endl;
+	
 	return 0;
 }
