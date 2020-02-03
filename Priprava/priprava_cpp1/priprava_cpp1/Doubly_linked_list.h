@@ -178,7 +178,7 @@ inline T* Doubly_linked_list<T>::read(int index)
 	if (index < _size)
 	{
 		Node* temp = find_node(index);
-		return &(temp->_data);
+		return &(temp->_value);
 	}
 	else
 	{
