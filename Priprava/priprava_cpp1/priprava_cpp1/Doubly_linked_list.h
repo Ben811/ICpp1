@@ -11,6 +11,7 @@ class Doubly_linked_list
 {
 public:
 	Doubly_linked_list();
+	~Doubly_linked_list();
 	void append(T value);
 	void insert(T value);
 	void insert_at(int index, T value);
@@ -46,6 +47,12 @@ private:
 
 template<typename T>
 inline Doubly_linked_list<T>::Doubly_linked_list(): _size(0), _first(nullptr), _last(nullptr){ }
+
+template<typename T>
+inline Doubly_linked_list<T>::~Doubly_linked_list()
+{
+	delete_list();
+}
 
 template<typename T>
 inline void Doubly_linked_list<T>::append(T value)
