@@ -12,9 +12,9 @@ class Doubly_linked_list
 public:
 	Doubly_linked_list();
 	~Doubly_linked_list();
-	void append(T value);
-	void insert(T value);
-	void insert_at(int index, T value);
+	void append(T* value);
+	void insert(T* value);
+	void insert_at(int index, T* value);
 	void delete_first();
 	void delete_last();
 	void delete_at(int index);
@@ -25,11 +25,12 @@ public:
 private:
 	struct Node
 	{
-		Node(T data) : _data(data){}
-		T _data;
+		Node(T* data) { _data = data; _next = nullptr; _prev = nullptr; }
+		~Node() { delete _data; }
+		T* _data;
 		Node* _next;
 		Node* _prev;
-		friend std::ostream& operator<<(std::ostream& os, const Node* node) { os << node->_data; return os; }
+		friend std::ostream& operator<<(std::ostream& os, const Node& node) { os << *(node._data); return os; }
 	};
 	int _size;
 	Node* _first;
@@ -55,7 +56,7 @@ inline Doubly_linked_list<T>::~Doubly_linked_list()
 }
 
 template<typename T>
-inline void Doubly_linked_list<T>::append(T value)
+inline void Doubly_linked_list<T>::append(T* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -74,7 +75,7 @@ inline void Doubly_linked_list<T>::append(T value)
 }
 
 template<typename T>
-inline void Doubly_linked_list<T>::insert(T value)
+inline void Doubly_linked_list<T>::insert(T* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -93,7 +94,7 @@ inline void Doubly_linked_list<T>::insert(T value)
 }
 
 template<typename T>
-inline void Doubly_linked_list<T>::insert_at(int index, T value)
+inline void Doubly_linked_list<T>::insert_at(int index, T* value)
 {
 	if (index == 0)
 	{
@@ -211,7 +212,7 @@ inline std::string Doubly_linked_list<T>::to_string()
 		Node* temp = _first;
 		for (int i = 0; i < _size; i++)
 		{			
-			ss << i << ": " << temp << std::endl;
+			ss << i << ": " << *temp << std::endl;
 			temp = temp->_next;
 		}
 		ret_string.append(ss.str());

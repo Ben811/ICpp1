@@ -26,7 +26,7 @@ private:
 		Node(K key, V data) : _key(key), _value(data), _next(nullptr){}
 		K _key;
 		V _value;
-		//next node with same data
+		//_next node with same data
 		Node* _next;
 	};
 

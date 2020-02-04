@@ -14,9 +14,9 @@ class Single_linked_list
 public:
 	Single_linked_list();
 	~Single_linked_list();
-	void append(T value);//at the end
-	void insert(T value); //to the front
-	void insert_at(int pos, T value);
+	void append(T* value);//at the end
+	void insert(T* value); //to the front
+	void insert_at(int pos, T* value);
 	void delete_first();
 	void delete_at(int index);
 	T* read(int index);
@@ -26,10 +26,11 @@ public:
 private:
 	struct Node
 	{	
-		Node(T val) : _value(val), next(nullptr) {}
-		T _value;
-		Node* next;
-		friend std::ostream& operator<<(std::ostream& os, const Node* node) { os << node->_value; return os; }
+		Node(T* val) { _value = val; _next = nullptr; }
+		~Node() { delete _value; }
+		T* _value;
+		Node* _next;
+		friend std::ostream& operator<<(std::ostream& os, const Node& node) { os << *(node._value); return os; }
 	};
 	int _size;
 	Node* _first;
@@ -38,7 +39,7 @@ private:
 	Node* find_node(int index) {
 		Node* temp = _first;
 		for (int i = 0; i < index; i++)
-			temp = temp->next;
+			temp = temp->_next;
 		return temp;
 	}
 };
@@ -55,7 +56,7 @@ inline Single_linked_list<T>::~Single_linked_list()
 }
 
 template<typename T>
-inline void Single_linked_list<T>::append(T value)
+inline void Single_linked_list<T>::append(T* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -65,14 +66,14 @@ inline void Single_linked_list<T>::append(T value)
 	}
 	else
 	{
-		_last->next = temp;
-		_last = _last->next;		
+		_last->_next = temp;
+		_last = _last->_next;		
 	}
 	_size++;
 }
 
 template<typename T>
-inline void Single_linked_list<T>::insert(T value)
+inline void Single_linked_list<T>::insert(T* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -82,14 +83,14 @@ inline void Single_linked_list<T>::insert(T value)
 	}
 	else
 	{			
-		temp->next = _first;
+		temp->_next = _first;
 		_first = temp;
 	}
 	_size++;
 }
 
 template<typename T>
-inline void Single_linked_list<T>::insert_at(int pos, T value)
+inline void Single_linked_list<T>::insert_at(int pos, T* value)
 {
 	if (pos == 0)
 	{
@@ -104,8 +105,8 @@ inline void Single_linked_list<T>::insert_at(int pos, T value)
 		Node* temp = find_node(pos - 1);
 		Node* new_node = new Node(value);
 
-		new_node->next = temp->next;
-		temp->next = new_node;
+		new_node->_next = temp->_next;
+		temp->_next = new_node;
 		_size++;
 	}
 	else
@@ -120,7 +121,7 @@ inline void Single_linked_list<T>::delete_first()
 	if (_first != nullptr)
 	{
 		Node* temp = _first;
-		_first = _first->next;
+		_first = _first->_next;
 		delete temp;
 		_size--;
 	}
@@ -140,15 +141,15 @@ inline void Single_linked_list<T>::delete_at(int index)
 	else if(index < _size)
 	{
 		Node* temp = find_node(index-1);
-		if (temp->next == _last)
+		if (temp->_next == _last)
 		{
 			delete _last;
 			_last = temp;
 		}
 		else
 		{
-			Node* del = temp->next;
-			temp->next = temp->next->next;
+			Node* del = temp->_next;
+			temp->_next = temp->_next->_next;
 			delete del;
 		}
 		_size--;
@@ -192,8 +193,8 @@ inline std::string Single_linked_list<T>::to_string()
 	Node* temp = _first;
 	for (int i = 0; i < _size; i++)
 	{
-		ss << temp << std::endl;
-		temp = temp->next;
+		ss << i << ": " << *temp << std::endl;
+		temp = temp->_next;
 	}	
 	ret_string.assign(ss.str());
 	return ret_string;
@@ -207,7 +208,7 @@ inline void Single_linked_list<T>::delete_list()
 		for (int i = 0; i < _size; i++)
 		{
 			Node* del = _first;
-			_first = _first->next;
+			_first = _first->_next;
 			delete del;
 		}
 		_size = 0;		
