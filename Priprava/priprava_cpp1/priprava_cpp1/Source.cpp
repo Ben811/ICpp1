@@ -2,30 +2,35 @@
 
 
 #include <iostream>
-#include <sstream>
+#include "Hash_table.h"
+
 #include "Min_heap.h"
 #include "Test_entity.h"
 #include "Max_heap.h"
 #include "Doubly_linked_list.h"
 #include "Single_linked_list.h"
 
-using namespace std;
-
 int main(int argc, char* argv[]) 
 {
 	try
 	{
-		Single_linked_list<Test_entity> a{};
-		for (int i = 0; i < 10; i++)
-		{			
-			a.append(new Test_entity(i));
-		}
+		Hast_table<double, Test_entity> a{};
 
-		a.insert_at(3,new Test_entity(21));
-		a.insert(new Test_entity(10));
-		a.delete_list();
-		string vypis = a.to_string();
-		cout << vypis;
+		for (int i = 0; i < 1; i++)
+		{
+			Test_entity first_in_hash(i+1);
+			Test_entity second_in_hash(i+11);
+			Test_entity third_in_hash(i+111);
+					
+			a.put(i+0.1, first_in_hash);
+			a.put(i+0.01, second_in_hash);
+			a.put(i + 0.001, third_in_hash);
+		}
+		Test_entity* temp =  a.get(0.0001);
+		std::string ret = a.to_string();
+		std::cout << ret << std::endl;
+
+		
 	}
 	catch (Data_structure_exception& ex)
 	{

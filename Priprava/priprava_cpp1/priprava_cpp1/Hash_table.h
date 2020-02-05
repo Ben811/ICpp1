@@ -1,10 +1,10 @@
 #ifndef _HASH_TABLE_H
 #define _HASH_TABLE_H
 #include "Data_structure_exception.h"
+#include <sstream>
+//template <int tablesize>
+//struct Key_hash;
 
-
-struct Node;
-struct Key_hash;
 template<typename K, typename V>
 class Hast_table
 {
@@ -13,17 +13,14 @@ public:
 	~Hast_table();
 
 	V* get(const K& key);
-	void put(const K& key, const V& value);
+	void put(const K& key, V& value);
 	void remove(const K& key);
-	
+	std::string to_string();
 private:
-	Node** _table;
-	Key_hash<_table_size> _function;
-	int _table_size;
-	
+
 	struct Node
 	{
-		Node(K key, V data) : _key(key), _value(data), _next(nullptr){}
+		Node(K key, V data) : _key(key), _value(data), _next(nullptr) {}
 		K _key;
 		V _value;
 		//_next node with same data
@@ -31,14 +28,25 @@ private:
 	};
 
 	//function to return hash
-	template <size_t tablesize>
+	
+	template<typename K,size_t tablesize>
 	struct Key_hash
 	{
-		unsigned long operator()(const K &key)const
+		unsigned long operator()(const K& key) const
 		{
-			return reinterpret_cast<unsigned long>(key) % tablesize;
+			return static_cast<unsigned long>(key) % tablesize;
 		}
 	};
+	
+	
+private:
+	Node** _table;
+	Key_hash<K,10> _function;
+	int _table_size;
+	
+	Node* find_last(Node* node);
+	
+
 };
 
 
@@ -47,6 +55,8 @@ inline Hast_table<K, V>::Hast_table()
 {
 	_table_size = 10;
 	_table = new Node * [_table_size];
+	for (int i = 0; i < _table_size; i++)
+		_table[i] = nullptr;
 }
 
 template<typename K, typename V>
@@ -59,7 +69,11 @@ inline Hast_table<K, V>::~Hast_table()
 		while(entry != nullptr)
 		{
 			Node* prev = entry;
-			entry = entry->_next;
+			if (entry->_next != nullptr)
+			{
+				entry = entry->_next;
+			}
+			
 			delete prev;
 		}
 		delete[] _table;
@@ -76,44 +90,41 @@ inline V* Hast_table<K, V>::get(const K& key)
 	{
 		if (entry->_key == key)
 		{
-			return &(entry->_data);
+			return &(entry->_value);
 		}
 		entry = entry->_next;
 	}
-	throw Data_structure_exception("Get: data not found");
+	return nullptr;
 }
 
 template<typename K, typename V>
-inline void Hast_table<K, V>::put(const K& key, const V& value)
+inline void Hast_table<K, V>::put(const K& key, V& value)
 {
 	auto hash_value = _function(key);
-	Node* prev = nullptr;
-	Node* entry = _table[hash_value];
+	auto node = _table[hash_value];
 
-	//if the value on the specific hash_value index exists->
-	//get to the 
-	while (entry != nullptr && entry->_key != key)
+	Node* nextNode = new Node(key, value);
+	if (node != nullptr)
 	{
-		prev = entry;
-		entry = entry->_next;
-	}
-
-	//if the entry does not exist
-	if (entry == nullptr)
-	{
-		entry = new Node(key, value);
-
-		if (prev == nullptr)
-			//insert as first value
-			_table[hash_value] = entry;
+		while (node->_next != nullptr && node->_key != key)
+		{
+			node = node->_next;
+		}
 		
+		if (node->_key == key)
+		{
+			node->_value = value;
+		}
 		else
-			prev->_next = entry;
-		
+		{
+			node->_next = nextNode;
+		}
 	}
-	else 
-		entry->_data = value; //update 
-	
+	else
+	{
+		_table[hash_value] = nextNode;
+	}
+
 }
 
 template<typename K, typename V>
@@ -141,5 +152,38 @@ inline void Hast_table<K, V>::remove(const K& key)
 
 		delete entry;
 	}
+}
+template<typename K, typename V>
+inline std::string Hast_table<K, V>::to_string()
+{
+	std::string ret;
+	std::stringstream ss;
+	for (int i = 0; i < _table_size; i++)
+	{
+		Node* temp = _table[i];		
+		while(temp != nullptr)
+		{
+			ss << "index: " << i << " Key: "<< temp->_key << " value: " << temp->_value << std::endl;
+			temp = temp->_next;
+		}
+			
+	}
+	ret.assign(ss.str());
+
+	
+	return ret;
+}
+
+template <typename K, typename V>
+typename Hast_table<K, V>::Node* Hast_table<K, V>::find_last(Node* node)
+{
+	if (node != nullptr)
+	{
+		Node* temp = node;
+		while (temp->_next != nullptr)
+			temp = temp->_next;
+		return temp;
+	}
+	return nullptr;
 }
 #endif

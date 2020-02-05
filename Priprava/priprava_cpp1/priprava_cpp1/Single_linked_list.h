@@ -42,6 +42,18 @@ private:
 			temp = temp->_next;
 		return temp;
 	}
+
+	/*
+	 * 
+	if (node != nullptr)
+	{
+		Node* temp = node;
+		while (temp->_next != nullptr)
+			temp = temp->_next;
+		return temp;
+	}
+	return nullptr;
+	 */
 };
 
 #endif

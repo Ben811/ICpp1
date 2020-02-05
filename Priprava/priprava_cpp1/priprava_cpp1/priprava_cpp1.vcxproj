@@ -134,6 +134,7 @@
     <ClInclude Include="Test_entity.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Key_hash.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
