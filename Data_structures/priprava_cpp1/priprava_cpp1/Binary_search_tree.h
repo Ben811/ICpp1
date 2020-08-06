@@ -6,7 +6,6 @@
 #include "Quicksort.h"
 #include <vector>
 
-struct Node;
 //key class needs to implement operator "<=>" overload
 template<typename Key = int, typename Value = int>
  class Binary_search_tree
