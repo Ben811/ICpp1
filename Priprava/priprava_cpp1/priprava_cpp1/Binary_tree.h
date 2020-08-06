@@ -1,15 +1,15 @@
 #ifndef  _BINARY_TREE_H
 #define _BINARY_TREE_H
 
-template<typename T>
-class Binary_tree_array
+template<typename Value>
+class Binary_search_tree_array
 {
 public:
 	Binary_tree_array();
 	~Binary_tree_array();
-	void insert(T* data);
-	T* read();
-	void remove(T* data);
+	void insert(Value* data);
+	Value* read();
+	void remove(Value* data);
 
 	bool empty();
 	int get_capacity();
@@ -23,7 +23,7 @@ private:
 
 	void repair_tree();
 	
-	T** _tree_array;
+	Value** _tree_array;
 
 	int _capacity;
 	int _curr_size;

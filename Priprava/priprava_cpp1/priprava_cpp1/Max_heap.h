@@ -1,12 +1,12 @@
 #ifndef _MAX_HEAP_H
 #define _MAX_HEAP_H
-template<typename T>
+template<typename Value>
 class Max_heap {
 public:
 	Max_heap();
 	~Max_heap();
-	void insert(T* data);
-	T* remove_max();
+	void insert(Value* data);
+	Value* remove_max();
 	bool empty();
 	int get_size() { return _curr_size; }
 	int get_capacity() { return _capacity; }
@@ -20,7 +20,7 @@ private:
 	void heapify();
 	void heapify_from_index(int index);
 
-	T** _heap_array;
+	Value** _heap_array;
 	int _curr_size;
 	int _capacity;
 };
@@ -28,22 +28,22 @@ private:
 
 #endif
 
-template<typename T>
-inline Max_heap<T>::Max_heap()
+template<typename Value>
+inline Max_heap<Value>::Max_heap()
 {
 	_capacity = 5;
 	_curr_size = 0;
-	_heap_array = new T * [_capacity];
+	_heap_array = new Value * [_capacity];
 }
 
-template<typename T>
-inline Max_heap<T>::~Max_heap()
+template<typename Value>
+inline Max_heap<Value>::~Max_heap()
 {
 	delete[] _heap_array;
 }
 
-template<typename T>
-inline void Max_heap<T>::insert(T* data)
+template<typename Value>
+inline void Max_heap<Value>::insert(Value* data)
 {
 	if (data != nullptr)
 	{
@@ -60,12 +60,12 @@ inline void Max_heap<T>::insert(T* data)
 	}
 }
 
-template<typename T>
-inline T* Max_heap<T>::remove_max()
+template<typename Value>
+inline Value* Max_heap<Value>::remove_max()
 {
 	if (_curr_size > 0)
 	{
-		T* retVal = _heap_array[0];
+		Value* retVal = _heap_array[0];
 		_heap_array[0] = _heap_array[--_curr_size];
 		heapify();
 		return retVal;
@@ -76,17 +76,17 @@ inline T* Max_heap<T>::remove_max()
 	}
 }
 
-template<typename T>
-inline bool Max_heap<T>::empty()
+template<typename Value>
+inline bool Max_heap<Value>::empty()
 {
 	return _curr_size <= 0;
 }
 
-template<typename T>
-inline void Max_heap<T>::resize_heap()
+template<typename Value>
+inline void Max_heap<Value>::resize_heap()
 {
 	_capacity = 2 * _capacity;
-	T** temp_arr = new T * [_capacity];
+	Value** temp_arr = new Value * [_capacity];
 	for (int i = 0; i < _curr_size; i++)
 	{
 		temp_arr[i] = _heap_array[i];
@@ -95,19 +95,19 @@ inline void Max_heap<T>::resize_heap()
 	_heap_array = temp_arr;
 }
 
-template<typename T>
-inline void Max_heap<T>::switch_data(int index1, int index2)
+template<typename Value>
+inline void Max_heap<Value>::switch_data(int index1, int index2)
 {
 	if (index1 >= 0 && index2 >= 0 && index1 < _curr_size && index2 < _curr_size)
 	{
-		T* data_index1 = _heap_array[index1];
+		Value* data_index1 = _heap_array[index1];
 		_heap_array[index1] = _heap_array[index2];
 		_heap_array[index2] = data_index1;
 	}
 }
 
-template<typename T>
-inline void Max_heap<T>::heapify()
+template<typename Value>
+inline void Max_heap<Value>::heapify()
 {
 	for (int i = 0; i < _curr_size; i++)
 	{
@@ -117,8 +117,8 @@ inline void Max_heap<T>::heapify()
 	}
 }
 
-template<typename T>
-inline void Max_heap<T>::heapify_from_index(int index)
+template<typename Value>
+inline void Max_heap<Value>::heapify_from_index(int index)
 {
 	while (true)
 	{

@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{1C9A3D4C-A538-42C9-9F68-FF23AFD217ED}</ProjectGuid>
-    <RootNamespace>pripravacpp1</RootNamespace>
+    <ProjectGuid>{C985A2E0-962E-4F23-A068-98BD06C803E6}</ProjectGuid>
+    <RootNamespace>cv9v2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,7 +76,6 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -88,7 +87,6 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,7 +100,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,7 +115,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,19 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Binary_search_tree.h" />
-    <ClInclude Include="Data_structure_exception.h" />
-    <ClInclude Include="Doubly_linked_list.h" />
-    <ClInclude Include="Hash_table.h" />
-    <ClInclude Include="Max_heap.h" />
-    <ClInclude Include="Min_heap.h" />
-    <ClInclude Include="Quicksort.h" />
-    <ClInclude Include="Single_linked_list.h" />
-    <ClInclude Include="Test_entity.h" />
+    <ClInclude Include="ASitovyPrvek.h" />
+    <ClInclude Include="Fronta.h" />
+    <ClInclude Include="Hub.h" />
+    <ClInclude Include="Sit.h" />
+    <ClInclude Include="Uzel.h" />
+    <ClInclude Include="Zprava.h" />
+    <ClInclude Include="ZpravaPort.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Key_hash.cpp" />
-    <ClCompile Include="Source1.cpp" />
+    <ClCompile Include="Hub.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

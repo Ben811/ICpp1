@@ -8,27 +8,27 @@
 //data, i want to use inside each node
 
 
-template<typename T>
+template<typename Value>
 class Single_linked_list
 {
 public:
 	Single_linked_list();
 	~Single_linked_list();
-	void append(T* value);//at the end
-	void insert(T* value); //to the front
-	void insert_at(int pos, T* value);
+	void append(Value* value);//at the end
+	void insert(Value* value); //to the front
+	void insert_at(int pos, Value* value);
 	void delete_first();
 	void delete_at(int index);
-	T* read(int index);
+	Value* read(int index);
 	int get_size();
 	std::string to_string();
 	void delete_list();
 private:
 	struct Node
 	{	
-		Node(T* val) { _value = val; _next = nullptr; }
+		Node(Value* val) { _value = val; _next = nullptr; }
 		~Node() { delete _value; }
-		T* _value;
+		Value* _value;
 		Node* _next;
 		friend std::ostream& operator<<(std::ostream& os, const Node& node) { os << *(node._value); return os; }
 	};
@@ -58,17 +58,17 @@ private:
 
 #endif
 
-template<typename T>
-inline Single_linked_list<T>::Single_linked_list() : _size(0), _first(nullptr), _last(nullptr) {}
+template<typename Value>
+inline Single_linked_list<Value>::Single_linked_list() : _size(0), _first(nullptr), _last(nullptr) {}
 
-template<typename T>
-inline Single_linked_list<T>::~Single_linked_list()
+template<typename Value>
+inline Single_linked_list<Value>::~Single_linked_list()
 {
 	delete_list();
 }
 
-template<typename T>
-inline void Single_linked_list<T>::append(T* value)
+template<typename Value>
+inline void Single_linked_list<Value>::append(Value* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -79,13 +79,13 @@ inline void Single_linked_list<T>::append(T* value)
 	else
 	{
 		_last->_next = temp;
-		_last = _last->_next;		
+		_last = _last->_next;	
 	}
 	_size++;
 }
 
-template<typename T>
-inline void Single_linked_list<T>::insert(T* value)
+template<typename Value>
+inline void Single_linked_list<Value>::insert(Value* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -101,8 +101,8 @@ inline void Single_linked_list<T>::insert(T* value)
 	_size++;
 }
 
-template<typename T>
-inline void Single_linked_list<T>::insert_at(int pos, T* value)
+template<typename Value>
+inline void Single_linked_list<Value>::insert_at(int pos, Value* value)
 {
 	if (pos == 0)
 	{
@@ -127,8 +127,8 @@ inline void Single_linked_list<T>::insert_at(int pos, T* value)
 	}
 }
 
-template<typename T>
-inline void Single_linked_list<T>::delete_first()
+template<typename Value>
+inline void Single_linked_list<Value>::delete_first()
 {
 	if (_first != nullptr)
 	{
@@ -143,8 +143,8 @@ inline void Single_linked_list<T>::delete_first()
 	}
 }
 
-template<typename T>
-inline void Single_linked_list<T>::delete_at(int index)
+template<typename Value>
+inline void Single_linked_list<Value>::delete_at(int index)
 {
 	if (index == 0)
 	{
@@ -172,8 +172,8 @@ inline void Single_linked_list<T>::delete_at(int index)
 	}
 }
 
-template<typename T>
-inline T* Single_linked_list<T>::read(int index)
+template<typename Value>
+inline Value* Single_linked_list<Value>::read(int index)
 {
 	if (index < _size)
 	{
@@ -186,14 +186,14 @@ inline T* Single_linked_list<T>::read(int index)
 	}
 }
 
-template<typename T>
-inline int Single_linked_list<T>::get_size()
+template<typename Value>
+inline int Single_linked_list<Value>::get_size()
 {
 	return _size;
 }
 
-template<typename T>
-inline std::string Single_linked_list<T>::to_string()
+template<typename Value>
+inline std::string Single_linked_list<Value>::to_string()
 {
 	if (_size == 0)
 	{
@@ -212,8 +212,8 @@ inline std::string Single_linked_list<T>::to_string()
 	return ret_string;
 }
 
-template<typename T>
-inline void Single_linked_list<T>::delete_list()
+template<typename Value>
+inline void Single_linked_list<Value>::delete_list()
 {
 	if (_first != nullptr)
 	{

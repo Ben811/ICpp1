@@ -6,28 +6,28 @@
 //if i want to use this, i need to overload operator<< for the
 //data, i want to use inside each node
 
-template<typename T>
+template<typename Value>
 class Doubly_linked_list
 {
 public:
 	Doubly_linked_list();
 	~Doubly_linked_list();
-	void append(T* value);
-	void insert(T* value);
-	void insert_at(int index, T* value);
+	void append(Value* value);
+	void insert(Value* value);
+	void insert_at(int index, Value* value);
 	void delete_first();
 	void delete_last();
 	void delete_at(int index);
-	T* read(int index);
+	Value* read(int index);
 	int get_size();
 	std::string to_string();
 	void delete_list();
 private:
 	struct Node
 	{
-		Node(T* data) { _data = data; _next = nullptr; _prev = nullptr; }
+		Node(Value* data) { _data = data; _next = nullptr; _prev = nullptr; }
 		~Node() { delete _data; }
-		T* _data;
+		Value* _data;
 		Node* _next;
 		Node* _prev;
 		friend std::ostream& operator<<(std::ostream& os, const Node& node) { os << *(node._data); return os; }
@@ -46,17 +46,17 @@ private:
 
 #endif
 
-template<typename T>
-inline Doubly_linked_list<T>::Doubly_linked_list(): _size(0), _first(nullptr), _last(nullptr){ }
+template<typename Value>
+inline Doubly_linked_list<Value>::Doubly_linked_list(): _size(0), _first(nullptr), _last(nullptr){ }
 
-template<typename T>
-inline Doubly_linked_list<T>::~Doubly_linked_list()
+template<typename Value>
+inline Doubly_linked_list<Value>::~Doubly_linked_list()
 {
 	delete_list();
 }
 
-template<typename T>
-inline void Doubly_linked_list<T>::append(T* value)
+template<typename Value>
+inline void Doubly_linked_list<Value>::append(Value* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -74,8 +74,8 @@ inline void Doubly_linked_list<T>::append(T* value)
 	_size++;
 }
 
-template<typename T>
-inline void Doubly_linked_list<T>::insert(T* value)
+template<typename Value>
+inline void Doubly_linked_list<Value>::insert(Value* value)
 {
 	Node* temp = new Node(value);
 	if (_size == 0)
@@ -93,8 +93,8 @@ inline void Doubly_linked_list<T>::insert(T* value)
 	_size++;
 }
 
-template<typename T>
-inline void Doubly_linked_list<T>::insert_at(int index, T* value)
+template<typename Value>
+inline void Doubly_linked_list<Value>::insert_at(int index, Value* value)
 {
 	if (index == 0)
 	{
@@ -122,8 +122,8 @@ inline void Doubly_linked_list<T>::insert_at(int index, T* value)
 	}
 }
 
-template<typename T>
-inline void Doubly_linked_list<T>::delete_first()
+template<typename Value>
+inline void Doubly_linked_list<Value>::delete_first()
 {
 	if (_first != nullptr)
 	{
@@ -139,8 +139,8 @@ inline void Doubly_linked_list<T>::delete_first()
 
 }
 
-template<typename T>
-inline void Doubly_linked_list<T>::delete_last()
+template<typename Value>
+inline void Doubly_linked_list<Value>::delete_last()
 {
 	if (_last != nullptr)
 	{
@@ -155,8 +155,8 @@ inline void Doubly_linked_list<T>::delete_last()
 	}
 }
 
-template<typename T>
-inline void Doubly_linked_list<T>::delete_at(int index)
+template<typename Value>
+inline void Doubly_linked_list<Value>::delete_at(int index)
 {
 	if (index == 0)
 	{
@@ -180,8 +180,8 @@ inline void Doubly_linked_list<T>::delete_at(int index)
 }
 
 
-template<typename T>
-inline T* Doubly_linked_list<T>::read(int index)
+template<typename Value>
+inline Value* Doubly_linked_list<Value>::read(int index)
 {
 	if (index < _size)
 	{
@@ -196,14 +196,14 @@ inline T* Doubly_linked_list<T>::read(int index)
 	
 }
 
-template<typename T>
-inline int Doubly_linked_list<T>::get_size()
+template<typename Value>
+inline int Doubly_linked_list<Value>::get_size()
 {
 	return _size;
 }
 
-template<typename T>
-inline std::string Doubly_linked_list<T>::to_string()
+template<typename Value>
+inline std::string Doubly_linked_list<Value>::to_string()
 {
 	if (_size > 0)
 	{
@@ -222,8 +222,8 @@ inline std::string Doubly_linked_list<T>::to_string()
 	return "";
 }
 
-template<typename T>
-inline void Doubly_linked_list<T>::delete_list()
+template<typename Value>
+inline void Doubly_linked_list<Value>::delete_list()
 {
 	if (_first != nullptr)
 	{

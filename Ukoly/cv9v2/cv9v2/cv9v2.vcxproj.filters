@@ -13,44 +13,35 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Dispose">
-      <UniqueIdentifier>{46a33b5d-55ba-4aa5-afb3-1496830fb1cd}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Single_linked_list.h">
+    <ClInclude Include="Zprava.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Test_entity.h">
+    <ClInclude Include="ZpravaPort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Doubly_linked_list.h">
+    <ClInclude Include="ASitovyPrvek.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data_structure_exception.h">
+    <ClInclude Include="Sit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Min_heap.h">
+    <ClInclude Include="Fronta.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Max_heap.h">
+    <ClInclude Include="Hub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Binary_search_tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Hash_table.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quicksort.h">
+    <ClInclude Include="Uzel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Key_hash.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source1.cpp">
+    <ClCompile Include="Hub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
